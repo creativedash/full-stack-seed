@@ -5,7 +5,7 @@ code **should** do before writing it. BDD is a superset of Test-Driven Developme
 simply redefining the vocabulary from "expect" (TDD) to "should" (BDD). For example,
 "Expect 10 to equal 10" compared to "10 should equal 10".
 
-### Types of Tests
+## Types of Tests
 
 Full-stack javascript testing can be categorized into three types of tests:
 
@@ -21,3 +21,15 @@ Once you connect two or more units together you should write an integration test
 
 #### E2E Tests
 These will test functionality throughout the full stack – from Angular on down to Nginx. By using [Protractor]() we can simulate a user making their way through the app in a virtual headless browser. Again, these are very high-level tests and are best created after major blocks of functionality are completed between the front and back end.
+
+## Tools
+
+* [Mocha](https://github.com/mochajs/mocha) - Test framework
+* [Should](https://github.com/shouldjs/should.js) - Assertion library
+* [Supertest](https://github.com/tj/supertest) - HTTP assertions
+* [Protractor](https://github.com/angular/protractor) - E2E framework
+
+
+## Under Consideration
+
+* [Istanbul](https://github.com/gotwarlost/istanbul) - Code coverage tool
