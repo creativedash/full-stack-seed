@@ -2,6 +2,7 @@
 // Module Dependencies
 var express     = require('express');
 var bodyParser  = require('body-parser');
+var favicon     = require('serve-favicon');
 var port        = process.env.PORT || 3000;
 
 
@@ -10,6 +11,7 @@ var app = express();
 app.set('path', __dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(favicon(__dirname + '/client/images/favicon.ico'));
 
 
 // Return Express
