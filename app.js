@@ -13,7 +13,7 @@ app.set('path', __dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+    
 /* Config
 ---------------------------------------------------------------------- */
 require('./config/templates')(app); // Template rendering settings
@@ -21,7 +21,7 @@ require('./config/templates')(app); // Template rendering settings
 
 /* Routes
 ---------------------------------------------------------------------- */
-app.use('/', require('./app/routes/index-route'));
+app.use("/", require('./app/routes/index-route'));
 
 
 /* Start Server

@@ -1,11 +1,12 @@
 var should = require("should"),
-    Todo   = function() {}; // Stubbed for now
+    Todo   = require("./../../app/controllers/todo-controller");
 
 describe("TodoController", function() {
 
     // Create New Todos
     describe("#create", function() {
 
+        // Create New Todos
         it("should add new todos", function(done) {
             Todo.create("My example todo", function(error, todo) {
 
@@ -19,13 +20,16 @@ describe("TodoController", function() {
                 done();
             });
         });
-
     });
 
 
-    // Add New Todos
-    // it("Should add new todos", function(done) {
+    describe("#update", function() {})
 
-    // });
+
+    // Remove Todos
+    describe("#delete", function() {
+        it("should add new todos", function(done) {
+        });
+    });
 
 });
