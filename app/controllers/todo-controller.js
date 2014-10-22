@@ -16,17 +16,17 @@ module.exports = (function() {
         var todo = new Todo({text: text});
 
         // Persist
-        todo.save(function(error, todo) {
-            console.log(error, todo);
-            callback(error, todo);
+        todo.save(function(error, todo, affected) {
+
+            // Error Persisting
+            if (error) {
+                return callback("Unable to create todo");
+            }
+
+            return callback(null, todo);
         });
     };
 
+
     return TodoController;
 }());
-
-
-// console.log(require("./app/controllers/todo-controller"))
-// require("./app/controllers/todo-controller").create("something", function(a, b) {
-//     console.log(a, b);
-// })

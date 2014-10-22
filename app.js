@@ -1,28 +1,30 @@
-
-// Module Dependencies
-var express     = require('express');
-var bodyParser  = require('body-parser');
-var port        = process.env.PORT || 3000;
-
+var express    = require("express"),
+    bodyParser = require("body-parser"),
+    mongoose   = require("mongoose"),
+    port       = process.env.PORT || 3000,
+    app        = express();
 
 // Express
-var app = express();
-app.set('path', __dirname);
+app.set("path", __dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Return Express
+// Expose Express
 module.exports = app;
 
 
+// Database Connection
+mongoose.connect('mongodb://localhost/todo_app');
+
+
 // Config
-require('./config/templates'); // Template rendering settings
+require("./config/templates"); // Template rendering settings
 
 
 // Routes
-app.use('/', require('./app/routes/index-route'));
+app.use("/", require("./app/routes/index-route"));
 
 
 // Start Server
 app.listen(port);
-console.log('Express is running on port ' + port);
+console.log("Express is running on port " + port);
