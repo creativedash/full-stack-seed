@@ -1,17 +1,14 @@
 
-/* Dependencies
----------------------------------------------------------------------- */
+// Module Dependencies
 var express     = require('express');
 var router      = express.Router();
 
 
-/* Routes
----------------------------------------------------------------------- */
+// GET /
 router.get('/', function(req, res){
     res.render('index', {});
 });
 
 
-/* Return router
----------------------------------------------------------------------- */
+// Return Router
 module.exports = router;
