@@ -22,11 +22,6 @@ require('./config/templates'); // Template rendering settings
 
 // Routes
 app.use('/', require('./app/routes/index-route'));
-app.use('/', require('./app/routes/index-route'));
-app.use('/', require('./app/routes/index-route'));
-app.use('/', require('./app/routes/index-route'));
-app.use('/', require('./app/routes/index-route'));
-app.use('/', require('./app/routes/index-route'));
 
 
 // Start Server
