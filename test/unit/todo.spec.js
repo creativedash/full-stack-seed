@@ -1,14 +1,15 @@
-var should = require("should"),
-    Todo   = function() {}; // Stubbed for now
+var tester   = require("./../test_helper"),
+    should   = require("should"),
+    Todo     = require("./../../app/controllers/todo-controller");
 
 describe("TodoController", function() {
 
     // Create New Todos
     describe("#create", function() {
 
+        // Create New Todos
         it("should add new todos", function(done) {
             Todo.create("My example todo", function(error, todo) {
-
                 // No Errors Should Exist
                 should.not.exist(error);
 
@@ -19,13 +20,6 @@ describe("TodoController", function() {
                 done();
             });
         });
-
     });
-
-
-    // Add New Todos
-    // it("Should add new todos", function(done) {
-
-    // });
 
 });
