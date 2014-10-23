@@ -88,6 +88,13 @@ module.exports = (function() {
     };
 
 
+    /**
+     * Update an existing todo
+     * @param  {string}   id       Todo to update
+     * @param  {string}   text     Text to update
+     * @param  {Function} callback Called on completion
+     * @return {undefined}
+     */
     TodoController.update = function(id, text, callback) {
 
         // Validate MongoId
@@ -106,7 +113,6 @@ module.exports = (function() {
         });
 
     };
-
 
 
     /**
