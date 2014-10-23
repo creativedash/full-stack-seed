@@ -2,6 +2,7 @@
 // Module Dependencies
 var gulp            = require('gulp'),
     concat          = require('gulp-concat'),
+    sourcemaps      = require('gulp-sourcemaps'),
     rename          = require('gulp-rename'),
     sass            = require('gulp-sass'),
     autoprefixer    = require('gulp-autoprefixer'),
@@ -63,7 +64,9 @@ gulp.task('vendor_scripts', function(){
             'bower_components/angular-resource/angular-resource.min.js',
             'bower_components/angular-ui-router/release/angular-ui-router.min.js'
         ])
+        .pipe(sourcemaps.init())
         .pipe(concat('vendor.min.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/scripts'));
 });
 

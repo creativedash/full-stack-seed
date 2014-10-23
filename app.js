@@ -12,6 +12,7 @@ app.set('path', __dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(favicon(__dirname + '/client/images/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
 
 
 // Return Express
