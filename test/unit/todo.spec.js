@@ -116,7 +116,6 @@ describe("TodoController", function() {
             });
         });
 
-
         it("should delete todos", function(done) {
 
             // Delete the first todo
@@ -140,6 +139,49 @@ describe("TodoController", function() {
 
             });
 
+        });
+
+        it("should not allow invalid mongoids", function(done) {
+            Todo.delete("faoisdasd", function(error) {
+                should.exist(error);
+                done();
+            });
+        });
+    });
+
+
+    /**
+     * Get a single todo
+     * @return {undefined}
+     */
+    describe("#get", function() {
+
+        var id = "";
+
+        // Create a todo
+        before(function(done) {
+            Todo.create("This is a really rad todo!!!", function(error, todo) {
+                id = String(todo._id);
+                done();
+            });
+        });
+
+        it("should get single todos", function(done) {
+
+            // Get a todo
+            Todo.get(id, function(error, todo) {
+
+                // No errors allowed
+                should.not.exist(error);
+
+                // Should get an object back
+                (typeof todo === "object").should.be.true;
+
+                // Ensure created date
+                todo.should.have.property("created");
+
+                done();
+            });
         });
 
     });

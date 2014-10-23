@@ -29,6 +29,31 @@ module.exports = (function() {
 
 
     /**
+     * Get a single todo
+     * @param  {string}   id       Todo to fetch
+     * @param  {Function} callback Called on completion
+     * @return {undefined}
+     */
+    TodoController.get = function(id, callback) {
+
+        // Validate MongoId
+        if (!id.length || id.length < 24) {
+            return callback("Invalid todo id");
+        }
+
+        // Fetch single todo
+        Todo.findById(id, function(error, todo) {
+            if (error) {
+                return callback(error);
+            }
+
+            // Go!
+            return callback(null, todo);
+        });
+    };
+
+
+    /**
      * Get a list of todos
      * @param  {int} page  Paginated offset
      * @param  {int} count Number of results per page
