@@ -5,9 +5,34 @@ module.exports = (function() {
     var TodoController = {};
 
     /**
+     * Create a new todo
+     * @param  {string}   text     What needs doing
+     * @param  {Function} callback Called on completion
+     * @return {undefined}
+     */
+    TodoController.create = function(text, callback) {
+
+        // Create new todo
+        var todo = new Todo({text: text});
+
+        // Persist
+        todo.save(function(error, todo, affected) {
+
+            // Error Persisting
+            if (error) {
+                return callback("Unable to create todo");
+            }
+
+            return callback(null, todo);
+        });
+    };
+
+
+    /**
      * Get a list of todos
      * @param  {int} page  Paginated offset
      * @param  {int} count Number of results per page
+     * @param  {Function} callback Called on completion
      * @return {undefined}
      */
     TodoController.list = function(page, count, callback) {
@@ -30,7 +55,7 @@ module.exports = (function() {
             .exec(function(error, todos) {
 
                 if (error) {
-                    return callback("Unable to list todos");
+                    return callback(error);
                 }
 
                 return callback(null, todos);
@@ -39,25 +64,26 @@ module.exports = (function() {
 
 
     /**
-     * Create a new todo
-     * @param  {string}   text     What needs doing
+     * Delete a todo by id
+     * @param  {string} id Todo to delete
      * @param  {Function} callback Called on completion
      * @return {undefined}
      */
-    TodoController.create = function(text, callback) {
+    TodoController.delete = function(id, callback) {
 
-        // Create new todo
-        var todo = new Todo({text: text});
+        // Validate MongoId
+        if (!id.length || id.length < 24) {
+            return callback("Invalid todo id");
+        }
 
-        // Persist
-        todo.save(function(error, todo, affected) {
-
-            // Error Persisting
+        // Remove todo
+        Todo.findOneAndRemove({_id: id}, function(error) {
             if (error) {
-                return callback("Unable to create todo");
+                return callback(error);
             }
 
-            return callback(null, todo);
+            // No errors
+            return callback(null);
         });
     };
 

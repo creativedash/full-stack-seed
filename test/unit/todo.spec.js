@@ -4,6 +4,7 @@ var tester   = require("./../test_helper"),
 
 describe("TodoController", function() {
 
+
     /**
      * Todo Creation
      * @return {undefined}
@@ -47,7 +48,6 @@ describe("TodoController", function() {
             });
         });
 
-
         // Fetch list from DB
         it("should list todos", function(done) {
             Todo.list(null, null, function(error, todos) {
@@ -90,6 +90,57 @@ describe("TodoController", function() {
             done();
         });
 
+    });
+
+
+    /**
+     * Delete Todos
+     * @return {undefined}
+     */
+    describe("#delete", function() {
+        var todos = [];
+
+        // Create 4 Sample todos
+        beforeEach(function(done) {
+            var items = ["Wash my car", "Feed the dogs", "Eat pizza", "Nap"];
+
+            // Create a todo for each item
+            items.forEach(function(item, index) {
+                Todo.create(item, function(error, todo) {
+                    todos.push(todo._id);
+
+                    if (index + 1 === items.length) {
+                        done();
+                    }
+                });
+            });
+        });
+
+
+        it("should delete todos", function(done) {
+
+            // Delete the first todo
+            Todo.delete(String(todos[0]), function(error) {
+
+                // No errors :)
+                should.not.exist(error);
+
+                // Verify that our database has actually deleted the todo
+                // NOTE: should this test go to the model?
+                Todo.list(null, null, function(error, todos) {
+
+                    // No errors!
+                    should.not.exist(error);
+
+                    // 4 (todos) - 1 = 3
+                    (todos.length).should.be.exactly(3);
+
+                    done();
+                });
+
+            });
+
+        });
 
     });
 
