@@ -88,6 +88,27 @@ module.exports = (function() {
     };
 
 
+    TodoController.update = function(id, text, callback) {
+
+        // Validate MongoId
+        if (!id.length || id.length < 24) {
+            return callback("Invalid todo id");
+        }
+
+        // Find and Update the todo
+        Todo.findOneAndUpdate({_id: id}, {text: text, updated: new Date()}, function(error, todo) {
+
+            if (error) {
+                return callback(error);
+            }
+
+            return callback(null, todo);
+        });
+
+    };
+
+
+
     /**
      * Delete a todo by id
      * @param  {string} id Todo to delete

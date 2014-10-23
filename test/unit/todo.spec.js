@@ -186,4 +186,37 @@ describe("TodoController", function() {
 
     });
 
+
+    /**
+     * Update an existing 
+     * @return {[type]} [description]
+     */
+    describe("#update", function() {
+
+        var id = "";
+
+        before(function(done) {
+            Todo.create("A todo that I'm going to update in a few ms", function(error, todo) {
+                id += todo._id;
+                done();
+            });
+        });
+
+        it("Should update todo text", function(done) {
+            Todo.update(id, "the updated value", function(error, todo) {
+
+                // No errors
+                should.not.exist(error);
+
+                // We should get an object back
+                todo.should.be.an.Object;
+
+                // We should see the updated state
+                todo.should.have.property("updated");
+
+                done();
+            });
+        });
+    });
+
 });

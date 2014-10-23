@@ -18,6 +18,9 @@ var mongoose = require("mongoose"),
         created: {
             type: Date,
             default: Date.now
+        },
+        updated: {
+            type: Date
         }
     });
 
