@@ -18,6 +18,6 @@
     after(function() {
         // Close Mongo Connection
         mongoose.connection.close();
-    })
+    });
 
 }());
