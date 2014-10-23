@@ -1,15 +1,22 @@
-var express    = require("express"),
-    bodyParser = require("body-parser"),
-    mongoose   = require("mongoose"),
-    port       = process.env.PORT || 3000,
-    app        = express();
+
+// Module Dependencies
+var express     = require('express'),
+    bodyParser  = require('body-parser'),
+    mongoose    = require("mongoose"),
+    favicon     = require('serve-favicon'),
+    port        = process.env.PORT || 3000;
+
 
 // Express
+var app = express();
 app.set("path", __dirname);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(favicon(__dirname + '/client/images/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
 
-// Expose Express
+
+// Export Express
 module.exports = app;
 
 
