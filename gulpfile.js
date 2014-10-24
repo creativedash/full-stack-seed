@@ -47,7 +47,12 @@ gulp.task('angular', function(){
 
 // Process SASS
 gulp.task('sass', function(){
-    return gulp.src('client/styles/main.scss')
+    return gulp.src([
+            'bower_components/normalize.css/normalize.css',
+            'bower_components/famous-angular/dist/famous-angular.css',
+            'client/styles/main.scss'
+        ])
+        .pipe(concat('main.css'))
         .pipe(sass({ onError: function(e){ notify().write(e); }}))
         .pipe(autoprefixer())
         .pipe(gulp.dest('public/styles'))
@@ -62,11 +67,16 @@ gulp.task('vendor_scripts', function(){
     return gulp.src([
             'bower_components/angular/angular.min.js',
             'bower_components/angular-resource/angular-resource.min.js',
-            'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+            'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+            'bower_components/famous/dist/famous-global.min.js',
+            'bower_components/famous-angular/dist/famous-angular.min.js'
         ])
-        .pipe(sourcemaps.init())
+        .pipe(uglify({ 
+            mangle: false,
+            compress: false,
+            preserveComments: 'all'
+        }))
         .pipe(concat('vendor.min.js'))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/scripts'));
 });
 
@@ -75,3 +85,4 @@ gulp.task('vendor_scripts', function(){
 gulp.task('images', function(){
     return gulp.src('client/images/**/*').pipe(gulp.dest('public/images'));
 });
+

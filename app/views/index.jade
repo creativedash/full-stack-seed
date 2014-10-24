@@ -2,6 +2,17 @@ doctype html
 html(lang="en")
     head
         title ToDo App
+
+        //- Meta
+        meta(name="apple-mobile-web-app-status-bar-style", content="black")
+        meta(name="apple-mobile-web-app-capable", content="yes")
+        meta(name="viewport", content="width=device-width")
+
+        //- Styles
+        link(rel="stylesheet", href="/styles/main.css")
+
+        //- Scripts
         script(src="/scripts/vendor.min.js")
+        script(src="/scripts/app.js")
     body
-        h2 This is my app
+        ui-view
